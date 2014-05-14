@@ -1,0 +1,27 @@
+<h1>Listing todos</h1>
+
+<p>
+  <%= link_to 'All', todos_path %> 
+  <%= link_to 'Completed', completed_todos_path %> 
+  <%= link_to 'Active', active_todos_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Finished</th>
+    <th>Title</th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= link_to completed_message(todo), toggle_complete_todo_path(todo), method: :put %></td>
+    <td><%= link_to todo.title, edit_todo_path(todo) %></td>
+    <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Todo', new_todo_path %>
